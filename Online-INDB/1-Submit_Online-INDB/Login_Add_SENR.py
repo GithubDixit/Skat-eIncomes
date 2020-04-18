@@ -25,8 +25,8 @@ driver.maximize_window()
 # On the popup screen select/click/activate the frame to provide login credentials
 driver.switch_to.frame("letloen")
 time.sleep(5)
-driver.find_element_by_css_selector('#defaultFocusElementId').send_keys("ABHI")
-driver.find_element_by_name("password").send_keys("1234Test")
+driver.find_element_by_css_selector('#defaultFocusElementId').send_keys("Admin1032")
+driver.find_element_by_name("password").send_keys("Test1234")
 driver.find_element_by_xpath("//*[@id='defaultButton']").click()
 
 # Enter CVR/SE-nr Number

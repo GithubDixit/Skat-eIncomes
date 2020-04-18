@@ -1,4 +1,3 @@
-# Call Login python file
 import driver as driver
 import Login_Add_SENR
 import re
