@@ -33,25 +33,26 @@ class test:
     # ************ Method to Create Online INDB **************#
     def checkforlawtype(self):
         try:
-            time.sleep(3)
+            time.sleep(5)
             driver.find_elements_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[5]/td[2]/span[2]")
             print("Visible")
             test.selecteIndkomst(self)
         except NoSuchElementException:
             print("not visible")
-            test.cprupload(self)
+            test.cpruploadwithpincode(self)
 
     def selecteIndkomst(self):
         # Select EIncome Radio Button
         time.sleep(3)
         driver.find_element_by_xpath(
             "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]/input").click()
-        test.cprupload(self)
+        test.cpruploadwithpincode(self)
 
-    def cprupload(self):
+    def cpruploadwithpincode(self):
         time.sleep(2)
         #driver.find_element_by_id("cprnr").send_keys("1909580060") or
-        driver.find_element_by_xpath("//*[@id='cprnr']").send_keys("1909580060")
+        #driver.find_element_by_xpath("//*[@id='cprnr']").send_keys("1909580060")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060")
         time.sleep(2)
             #driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
         driver.find_element_by_xpath("//*[@id='defaultButton']").click()
@@ -76,13 +77,45 @@ class test:
         # **************** Field 14
         driver.find_element_by_xpath(
             "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").clear()
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").send_keys(
-            "500")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").send_keys("5000")
         driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
         time.sleep(3)
         test.checkForDyRulePincode(self)
         time.sleep(3)
+
+    def cpruploadwithoutpincode(self):
+        time.sleep(2)
+        #driver.find_element_by_id("cprnr").send_keys("1909580060") or
+        #driver.find_element_by_xpath("//*[@id='cprnr']").send_keys("1909580060")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060")
+        time.sleep(2)
+            #driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+        time.sleep(3)
+        driver.find_element_by_id("loenPeriodeStartDato").send_keys("2020.09.01")
+        time.sleep(3)
+        driver.find_element_by_id("loenPeriodeSlutDato").send_keys("2020.09.30")
+        time.sleep(3)
+        driver.find_element_by_id("dispositionsdato").send_keys("2020.09.15")
+        time.sleep(3)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").click()
+
+        # Enter value in Fields
+        time.sleep(3)
+        # **************** Field 13
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").clear()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").send_keys(
+            "1000")
+        # **************** Field 14
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").clear()
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").send_keys("5000")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
+        time.sleep(3)
+
 
     def checkForDyRulePincode(self):
         try:
@@ -93,16 +126,6 @@ class test:
         except NoSuchElementException:
             print("No Dynamic Rule displayed")
             test.copy_data_excel_method(self)
-
-    def dynamicScreenNavigation(self):
-        driver.find_element_by_xpath("/html/body/div[2]/span[1]/a").click()  # Click Indkomst menu
-        time.sleep(3)
-        # Click Systemadministration menu
-        test.handle_current_window_method(self)
-        driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[24]").click()
-        test.handle_current_window_method(self)
-        time.sleep(5)
 
     def pincodedyvalidation(self):
         try:
@@ -155,7 +178,7 @@ class test:
             "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[3]").click()
             test.handle_current_window_method(self)
             time.sleep(3)
-            test.checkforlawtype(self)
+            test.cpruploadwithoutpincode(self)
         # Enter Pincode and click ok
             driver.find_element_by_xpath("//*[@id='pinkode']").send_keys(Pinkode)
             driver.find_element_by_xpath(
@@ -189,6 +212,15 @@ class test:
         except NoSuchElementException:
             time.sleep(5)
 
+    def dynamicScreenNavigation(self):
+        driver.find_element_by_xpath("/html/body/div[2]/span[1]/a").click()  # Click Indkomst menu
+        time.sleep(3)
+        # Click Systemadministration menu
+        test.handle_current_window_method(self)
+        driver.find_element_by_xpath(
+        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[24]").click()
+        test.handle_current_window_method(self)
+        time.sleep(5)
     # ************ Method to Copy Data in Excel **************#
     def copy_data_excel_method(self):
         # ************** Load Excel **************#
