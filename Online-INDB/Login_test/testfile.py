@@ -202,10 +202,9 @@ class test:
         print(INDB_ID)
         # Copy INDB_ID in to Excel
         i = 2
-        if sheet.cell(row=i, column=1).value != None:
-            sheet.cell(i + 1, 1).value = INDB_ID
-        else:
-            sheet.cell(i, 1).value = INDB_ID
+        while sheet.cell(row=i, column=1).value != None:
+            i = i + 1
+        sheet.cell(i, 1).value = INDB_ID
         workbook.save(path)
         driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
 
