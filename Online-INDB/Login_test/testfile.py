@@ -33,30 +33,51 @@ class test:
     # ************ Method to Create Online INDB **************#
     def checkforlawtype(self):
         try:
-            time.sleep(5)
-            driver.find_elements_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[5]/td[2]/span[2]")
+            driver.find_elements_by_xpath('/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]')
             print("Visible")
             test.selecteIndkomst(self)
         except NoSuchElementException:
             print("not visible")
-            test.cpruploadwithpincode(self)
+            test.entercpr(self)
+
 
     def selecteIndkomst(self):
         # Select EIncome Radio Button
+        time.sleep(5)
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]/input").click()
+        #driver.find_element_by_css_selector("body > table:nth-child(5) > tbody:nth-child(4) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > div:nth-child(2) > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2) > span:nth-child(2) > input:nth-child(1)").click()
+        time.sleep(5)
+        test.entercpr(self)
         time.sleep(3)
+
+    def entercpr(self):
+        time.sleep(2)
         driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]/input").click()
-        test.cpruploadwithpincode(self)
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys(
+            "1909580060")
+        time.sleep(2)
+        # driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+        time.sleep(3)
+        Title = driver.title
+        print("Title of new page is", Title)
+        if Title == "SKAT, eIndkomst, Personstamoplysninger":
+            test.Personstamoplysninger(self)
+        else:
+            test.cpruploadwithpincode(self)
+
+    def Personstamoplysninger(self):
+        time.sleep(2)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.ansaettelsesDato').send_keys(20200401)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.fratraedelsesDato').send_keys(20200401)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.skattekortTypeAnvendFra').send_keys(20200401)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.supplerendeMedarbejderNr').send_keys(20200401)
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+        time.sleep(3)
+
 
     def cpruploadwithpincode(self):
         time.sleep(2)
-        #driver.find_element_by_id("cprnr").send_keys("1909580060") or
-        #driver.find_element_by_xpath("//*[@id='cprnr']").send_keys("1909580060")
-        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060")
-        time.sleep(2)
-            #driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
-        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
-        time.sleep(3)
         driver.find_element_by_id("loenPeriodeStartDato").send_keys("2020.09.01")
         time.sleep(3)
         driver.find_element_by_id("loenPeriodeSlutDato").send_keys("2020.09.30")
@@ -84,13 +105,6 @@ class test:
         time.sleep(3)
 
     def cpruploadwithoutpincode(self):
-        time.sleep(2)
-        #driver.find_element_by_id("cprnr").send_keys("1909580060") or
-        #driver.find_element_by_xpath("//*[@id='cprnr']").send_keys("1909580060")
-        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060")
-        time.sleep(2)
-            #driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
-        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
         time.sleep(3)
         driver.find_element_by_id("loenPeriodeStartDato").send_keys("2020.09.01")
         time.sleep(3)
