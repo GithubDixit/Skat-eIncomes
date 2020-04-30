@@ -19,181 +19,251 @@ from selenium.webdriver.support import expected_conditions as EC, wait
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import *
 
+class indbcreation:
+    def __init__(self):
+        pass
 
-# ************ Method to Handle Current Window **************#
-def handle_current_window_method():
-    handles = driver.window_handles
-    for handle in handles:
-        driver.switch_to.window(handle)
-        # print(driver.title)
-        driver.maximize_window()
+    # ************ Method to Handle Current Window **************#
+    def handle_current_window_method(self):
+        handles = driver.window_handles
+        for handle in handles:
+            driver.switch_to.window(handle)
+            # print(driver.title)
+            driver.maximize_window()
+
+    # ************ Method to Create Online INDB **************#
+    def checkforlawtype(self):
+        try:
+            driver.find_elements_by_xpath(
+                '/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]')
+            print("Visible")
+            indbcreation.selecteIndkomst(self)
+        except NoSuchElementException:
+            print("not visible")
+            indbcreation.entercpr(self)
+
+    def selecteIndkomst(self):
+        # Select EIncome Radio Button
+        time.sleep(5)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]/input").click()
+        # driver.find_element_by_css_selector("body > table:nth-child(5) > tbody:nth-child(4) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > div:nth-child(2) > table:nth-child(2) > tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2) > span:nth-child(2) > input:nth-child(1)").click()
+        time.sleep(5)
+        indbcreation.entercpr(self)
+        time.sleep(3)
+
+    def entercpr(self):
+        time.sleep(2)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys(
+            "1909580060")
+        time.sleep(2)
+        # driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+        time.sleep(3)
+        Title = driver.title
+        print("Title of new page is", Title)
+        if Title == "SKAT, eIndkomst, Personstamoplysninger":
+            indbcreation.Personstamoplysninger(self)
+        else:
+            indbcreation.cpruploadwithpincode(self)
+
+    def Personstamoplysninger(self):
+        time.sleep(2)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.ansaettelsesDato').send_keys(20200401)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.fratraedelsesDato').send_keys(20200401)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.skattekortTypeAnvendFra').send_keys(20200401)
+        driver.find_element_by_name('ansaettelsesOplysningerForm.supplerendeMedarbejderNr').send_keys(20200401)
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+        time.sleep(3)
+
+    def cpruploadwithpincode(self):
+        time.sleep(2)
+        driver.find_element_by_id("loenPeriodeStartDato").send_keys("2020.09.01")
+        time.sleep(3)
+        driver.find_element_by_id("loenPeriodeSlutDato").send_keys("2020.09.30")
+        time.sleep(3)
+        driver.find_element_by_id("dispositionsdato").send_keys("2020.09.15")
+        time.sleep(3)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").click()
+
+        # Enter value in Fields
+        time.sleep(3)
+        # **************** Field 13
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").clear()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").send_keys(
+            "1000")
+        # **************** Field 14
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").clear()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").send_keys(
+            "5000")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
+        time.sleep(3)
+        indbcreation.checkForDyRulePincode(self)
+        time.sleep(3)
+
+    def cpruploadwithoutpincode(self):
+        time.sleep(3)
+        driver.find_element_by_id("loenPeriodeStartDato").send_keys("2020.09.01")
+        time.sleep(3)
+        driver.find_element_by_id("loenPeriodeSlutDato").send_keys("2020.09.30")
+        time.sleep(3)
+        driver.find_element_by_id("dispositionsdato").send_keys("2020.09.15")
+        time.sleep(3)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").click()
+
+        # Enter value in Fields
+        time.sleep(3)
+        # **************** Field 13
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").clear()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").send_keys(
+            "1000")
+        # **************** Field 14
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").clear()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").send_keys(
+            "5000")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
+        time.sleep(3)
+
+    def checkForDyRulePincode(self):
+        try:
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[1]").is_displayed()
+            print("Dynamic Rule displayed")
+            indbcreation.pincodedyvalidation(self)
+        except NoSuchElementException:
+            print("No Dynamic Rule displayed")
+            indbcreation.copy_data_excel_method(self)
+
+    def pincodedyvalidation(self):
+        try:
+            # Pinkode Popup
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[1]").is_displayed()
+            Dynamic_Rule_Text = driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[1]/div[1]").text
+            print("Pincode Dynamic Validation Rule Error text message:", Dynamic_Rule_Text)
+            Dynamic_Rule = re.search('\(([^)]+)', Dynamic_Rule_Text).group(1)  # Pick rule Name
+            print("The Error is due to Dynamic Rule Number :", Dynamic_Rule)
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[1]").click()  # click Tilbage
+            indbcreation.dynamicScreenNavigation(self)
+            # click Dynamiske valideringsregler menu
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/a[13]").click()
+
+            # Move to current new window
+            indbcreation.handle_current_window_method(self)
+            time.sleep(5)
+
+            # Enter Fejlnr in the Dynamic Rule Search field
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[3]/td[2]/input").send_keys(
+                Dynamic_Rule)
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[4]/td[6]/input").click()  # Click Sog
+            time.sleep(3)
+
+            # Select the Rule
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr[2]/td[3]").click()
+            time.sleep(5)
+
+            # Copy value of Pincode
+            Pinkode = driver.find_element_by_xpath("//*[@id='pinkode']").get_attribute("value")
+            print(Pinkode)
+
+            # Click on Indkomst menu
+            driver.find_element_by_xpath("/html/body/div[2]/span[1]/a").click()
+            indbcreation.handle_current_window_method(self)
+            # click Afslut button
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/input").click()
+
+            # Click on Indberet lønoplysninger - online to create INDB
+            indbcreation.handle_current_window_method(self)
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[3]").click()
+            indbcreation.handle_current_window_method(self)
+            time.sleep(3)
+            indbcreation.cpruploadwithoutpincode(self)
+            # Enter Pincode and click ok
+            driver.find_element_by_xpath("//*[@id='pinkode']").send_keys(Pinkode)
+            driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[2]").click()
+        except NoSuchElementException:
+            print(' ')
+
+        try:
+            if driver.find_element_by_xpath(
+                    "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[2]/td[3]").is_displayed():
+                Fejl_Advis = driver.find_element_by_xpath(
+                    "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[2]/td[3]").text
+            if Fejl_Advis == 'Fejl':
+                print("Error found proceeding to submit INDB")
+            elif Fejl_Advis == 'Advis':
+                print("Only Adivce found proceeding to submit INDB")
+                driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
+                time.sleep(5)
+                indbcreation.copy_data_excel_method(self)  # Call Method to
+                # Click Afslut Button to close INDB Creation Screen
+                driver.find_element_by_xpath(
+                    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[5]/tbody/tr/td[2]/input[1]").click()
+            else:
+                print("No Adivce/Error found")
+                driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
+                time.sleep(5)
+                indbcreation.copy_data_excel_method(self)  # Call Method to
+                # Click Afslut Button to close INDB Creation Screen
+                driver.find_element_by_xpath(
+                    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[5]/tbody/tr/td[2]/input[1]").click()
+        except NoSuchElementException:
+            time.sleep(5)
+
+    def dynamicScreenNavigation(self):
+        driver.find_element_by_xpath("/html/body/div[2]/span[1]/a").click()  # Click Indkomst menu
+        time.sleep(3)
+        # Click Systemadministration menu
+        indbcreation.handle_current_window_method(self)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[24]").click()
+        indbcreation.handle_current_window_method(self)
+        time.sleep(5)
+
+    # ************ Method to Copy Data in Excel **************#
+    def copy_data_excel_method(self):
+        # ************** Load Excel **************#
+        path = (
+            r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")
+        workbook = openpyxl.load_workbook(path)  # Load Workbook
+        sheet = workbook['INDBID']
+        time.sleep(5)
+        INDB_ID = driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[3]/td[2]").text
+        print(INDB_ID)
+        # Copy INDB_ID in to Excel
+        i = 2
+        while sheet.cell(row=i, column=1).value != None:
+            i = i + 1
+        sheet.cell(i, 1).value = INDB_ID
+        workbook.save(path)
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
+
+    # Click to create Online INDB
 
 
-# ************ Method to Create Online INDB **************#
-def create_onlineINDB_method():
-    # Select EIncome Radio Button
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[4]/td[2]/span[2]/input").click()
-    # Provide CPR-no
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys(
-        "1909580060")
-    driver.find_element_by_xpath("//*[@id='defaultButton']").click()
-    time.sleep(3)
-    driver.find_element_by_id("loenPeriodeStartDato").send_keys("2019.12.01")
-    time.sleep(3)
-    driver.find_element_by_id("loenPeriodeSlutDato").send_keys("2019.12.31")
-    time.sleep(3)
-    driver.find_element_by_id("dispositionsdato").send_keys("2019.12.15")
-    time.sleep(3)
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").click()
-
-    # Enter value in Fields
-    time.sleep(3)
-    # **************** Field 13
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").clear()
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[2]/input").send_keys(
-        "1000")
-    # **************** Field 14
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").clear()
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[15]/td[4]/input").send_keys(
-        "500")
-    driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
-    time.sleep(5)
-
-
-# ************ Method to Copy Data in Excel **************#
-def copy_data_excel_method():
-    # ************** Load Excel **************#
-    path = (
-        r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")
-    workbook = openpyxl.load_workbook(path)  # Load Workbook
-    sheet = workbook['INDBID']
-    time.sleep(5)
-    INDB_ID = driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[3]/tbody/tr[3]/td[2]").text
-    print(INDB_ID)
-    # Copy INDB_ID in to Excel
-    sheet.cell(2, 1).value = INDB_ID
-    workbook.save(path)
-
-
-# Click to create Online INDB
 driver.find_element_by_xpath(
     '/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[3]').click()
-
-# Move to current new window
-handle_current_window_method()
-time.sleep(10)
-
-# Calling Online INDB Method for INDB submission
-create_onlineINDB_method()
-time.sleep(5)
-
-# ******************* Execption handling if case Pincode Validaton Dynamic Rule popus
-try:
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[1]").is_displayed()
-    Dynamic_Rule_Text = driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[1]/div[1]").text
-    print("Pincode Dynamic Validation Rule Error text message:", Dynamic_Rule_Text)
-    Dynamic_Rule = re.search('\(([^)]+)', Dynamic_Rule_Text).group(1)  # Pick rule Name
-    print("The Error is due to Dynamic Rule Number :", Dynamic_Rule)
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[1]").click()  # click Tilbage
-
-    # Search the Rule and fill value of Pinkode to proceed
-    driver.find_element_by_xpath("/html/body/div[2]/span[1]/a").click()  # Click Indkomst menu
-    time.sleep(3)
-
-    # Click Systemadministration menu
-    handle_current_window_method()
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[24]").click()
-
-    # Move to current new window
-    handle_current_window_method()
-    time.sleep(5)
-
-    # click Dynamiske valideringsregler menu
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/a[13]").click()
-
-    # Move to current new window
-    handle_current_window_method()
-    time.sleep(5)
-
-    # Enter Fejlnr in the Dynamic Rule Search field
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[3]/td[2]/input").send_keys(
-        Dynamic_Rule)
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[4]/td[6]/input").click()  # Click Sog
-    time.sleep(3)
-
-    # Select the Rule
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr[2]/td[3]").click()
-    time.sleep(5)
-
-    # Copy value of Pincode
-    Pinkode = driver.find_element_by_xpath("//*[@id='pinkode']").get_attribute("value")
-    print(Pinkode)
-
-    # Click on Indkomst menu
-    driver.find_element_by_xpath("/html/body/div[2]/span[1]/a").click()
-    handle_current_window_method()
-    # click Afslut button
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/input").click()
-
-    # Click on Indberet lønoplysninger - online to create INDB
-    handle_current_window_method()
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[3]").click()
-    handle_current_window_method()
-    time.sleep(3)
-    create_onlineINDB_method()
-    # Enter Pincode and click ok
-    driver.find_element_by_xpath("//*[@id='pinkode']").send_keys(Pinkode)
-    driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/div/div/div[2]/input[2]").click()
-except NoSuchElementException:
-    print(' ')
-
-try:
-    if driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[2]/td[3]").is_displayed():
-        Fejl_Advis = driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[2]/td[3]").text
-        if Fejl_Advis == 'Fejl':
-            print("Error found proceeding to submit INDB")
-        elif Fejl_Advis == 'Advis':
-            print("Only Adivce found proceeding to submit INDB")
-            driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
-            time.sleep(5)
-            copy_data_excel_method()  # Call Method to
-            # Click Afslut Button to close INDB Creation Screen
-            driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[5]/tbody/tr/td[2]/input[1]").click()
-        else:
-            print("No Adivce/Error found")
-            driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[2]/input").click()
-            time.sleep(5)
-            copy_data_excel_method()  # Call Method to
-            # Click Afslut Button to close INDB Creation Screen
-            driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[5]/tbody/tr/td[2]/input[1]").click()
-except NoSuchElementException:
-    time.sleep(5)
-
-# Exception handleing for Run Time Exception
-try:
-    driver.find_element_by_partial_link_text('dk.lec.jroad.exceptions.LECRuntimeException').is_displayed()
-except NoSuchElementException:
-    print(' ')
+A1 = indbcreation()
+A1.handle_current_window_method()
+A1.checkforlawtype()
