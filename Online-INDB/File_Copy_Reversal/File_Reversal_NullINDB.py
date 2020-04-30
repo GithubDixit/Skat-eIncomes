@@ -22,133 +22,146 @@ import xlrd  # import package to read data from Excel
 import openpyxl
 from openpyxl import load_workbook
 
-
-# ************ Method to Handle Current Window **************#
-def handle_current_window_method():
-    handles = driver.window_handles
-    for handle in handles:
-        driver.switch_to.window(handle)
-        # print(driver.title)
-        driver.maximize_window()
-
-
-# Click on Forespørg/Kopiér/Tilbagefør indberetninger
-time.sleep(5)
-driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[7]").click()
-
-# Move to current new window
-handle_current_window_method()
-time.sleep(5)
-
-# select search option Indberetnings-ID from drop down
-aa = driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/select").is_displayed()
-print(aa)
-driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/select").send_keys(
-    "IndberetningsID")
-time.sleep(3)
-
-# Pass entire file path as parameter
+global file_path
 file_path = (
-    r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")  # set file path
-book = xlrd.open_workbook(file_path)
-sh = book.sheet_by_index(1)
-data = sh.cell_value(rowx=1, colx=0)
-print(data)
-time.sleep(3)
+            r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")
+class nullindbreversal():
+    global recent_indbid, file_path
+    # ************ Method to Handle Current Window **************#
+    def handle_current_window_method(self):
+        handles = driver.window_handles
+        for handle in handles:
+            driver.switch_to.window(handle)
+            # print(driver.title)
+            driver.maximize_window()
 
-# Enter INDB ID to be searched
-driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/input").send_keys(
-    data)
+    def reversalScreenNavigation(self):
+        # Click on Forespørg/Kopiér/Tilbagefør indberetninger
+        time.sleep(5)
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[7]").click()
 
-# Press Sog Button
-driver.find_element_by_xpath("//*[@id='defaultButton']").click()
-try:
-    WebDriverWait(driver, 3).until(EC.alert_is_present(),
-                                   'Timed out waiting for PA creation ' +
-                                   'confirmation popup to appear.')
+        # Move to current new window
+        nullindbreversal.handle_current_window_method(self)
+        time.sleep(5)
 
-    alert = driver.switch_to.alert
-    print(alert.text)
-    time.sleep(5)
-    alert.accept()
-    print("alert accepted")
-except TimeoutException:
-    print("no popup alert")
-time.sleep(5)
+        # select search option Indberetnings-ID from drop down
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/select").is_displayed()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/select").send_keys(
+            "IndberetningsID")
+        time.sleep(3)
+        nullindbreversal.readINDBfromexcel(self)
 
-try:
-    NULL_INDB_ID = driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[3]").text
-    ART_VALUE = driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[7]").text
-    TILBAGEFORT_VALUE = driver.find_element_by_xpath(
-        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[8]").text
-    print("INDB ID is :", NULL_INDB_ID)
-    print("ART Value is:", ART_VALUE)
-    print("TILBAGEFORT VALUE is:", TILBAGEFORT_VALUE)
+    def readINDBfromexcel(self):
+        # Pass entire file path as parameter
+        # set file path
+        #file_path = (r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")
+        book = xlrd.open_workbook(file_path)
+        aa = book.sheet_by_index(1)
+        list_ad = []
+        total_rows = aa.nrows
+        print("Total number of Rows are:", total_rows)
+        for i in range(1, total_rows):
+            list_ad.append(aa.cell(rowx=i, colx=0).value)
+            print("Length of List", len(list_ad))
+            print("LIST", list_ad)
+        print("THE FINAL LIST IS ", list_ad)
+        time.sleep(3)
+        recent_indbid = list_ad[-1]
+        # Enter INDB ID to be searched
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/input").send_keys(
+            recent_indbid)
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click() # Press Sog Button
+        nullindbreversal.nullindbreversalmethod(self,recent_indbid)
 
-    if driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[3]").is_displayed():
-        if NULL_INDB_ID == data and ART_VALUE == 'I' and TILBAGEFORT_VALUE == 'Nej':
-            driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[11]/input").click()  # select Radio Button
-            driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[16]/td[2]/input").click()  # click Tilbagefør button
-            time.sleep(3)
+    def nullindbreversalmethod(self,recent_indbid):
 
-            New_NULL_INDBREV_ID = driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/input").is_displayed()
-            print(New_NULL_INDBREV_ID)  # Check whether New INDB REV ID field is dispalyed
+        try:
+            WebDriverWait(driver, 3).until(EC.alert_is_present(),
+                                           'Timed out waiting for PA creation ' +
+                                           'confirmation popup to appear.')
 
-            New_NULL_INDB_REV_ID = driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/input").get_attribute(
-                "value")
-            print("New_INDB_REV_ID is:-", New_NULL_INDB_REV_ID)  # print New INDB REV ID
-
-            Hovedindberetningsident = driver.find_element_by_xpath(
-                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[4]/td[2]/input").get_attribute(
-                "value")
-            print("Hovedindberetningsident is:", Hovedindberetningsident)
-
-            # Copy INDB ID to Excel File
+            alert = driver.switch_to.alert
+            print(alert.text)
             time.sleep(5)
-            workbook = openpyxl.load_workbook(file_path)  # Load Workbook
-            sheet = workbook['REV_INDBID']
-            print(New_NULL_INDB_REV_ID)
-            # Copy INDB_ID in to Excel
-            sheet.cell(2, 6).value = NULL_INDB_ID
-            sheet.cell(2, 7).value = New_NULL_INDB_REV_ID
-            sheet.cell(2, 8).value = Hovedindberetningsident
-            workbook.save(file_path)
-    else:
-        print('  ')
-except NoSuchElementException:
-    print('  ')
+            alert.accept()
+            print("Popup Alert Message Appeared and Accepted while searching INDB")
+        except TimeoutException:
+            print("No Popup Alert Message Appeared while searching INDB")
+            time.sleep(5)
 
-# Click bekraft button to commit Tilbage (Reversal)
-driver.find_element_by_xpath("//*[@id='defaultButton']").click()
-try:
-    WebDriverWait(driver, 3).until(EC.alert_is_present(),
-                                   'Timed out waiting for PA creation ' +
-                                   'confirmation popup to appear.')
+        try:
+            NULL_INDB_ID = driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[3]").text
+            ART_VALUE = driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[7]").text
+            TILBAGEFORT_VALUE = driver.find_element_by_xpath(
+                "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[8]").text
+            print("INDB ID is :", NULL_INDB_ID)
+            print("ART Value is:", ART_VALUE)
+            print("TILBAGEFORT VALUE is:", TILBAGEFORT_VALUE)
+            print(recent_indbid)
+            if driver.find_element_by_xpath(
+                    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[3]").is_displayed():
+                if NULL_INDB_ID == recent_indbid and ART_VALUE == 'I' and TILBAGEFORT_VALUE == 'Nej':
+                    driver.find_element_by_xpath(
+                        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[18]/td/table/tbody/tr[2]/td[11]/input").click()  # select Radio Button
+                    driver.find_element_by_xpath(
+                        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[16]/td[2]/input").click()  # click Tilbagefør button
+                    time.sleep(3)
 
-    alert = driver.switch_to.alert
-    print(alert.text)
-    time.sleep(5)
-    alert.accept()
-    print("alert accepted")
-except TimeoutException:
-    print("no popup alert")
-time.sleep(5)
+                    New_NULL_INDBREV_ID = driver.find_element_by_xpath(
+                        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/input").is_displayed()
+                    print(New_NULL_INDBREV_ID)  # Check whether New INDB REV ID field is dispalyed
 
-try:
-    if driver.find_element_by_partial_link_text('dk.lec.jroad.exceptions.LECRuntimeException').is_displayed():
-        print("RunTime Exception: dk.lec.jroad.exceptions.LECRuntimeException")
-    else:
-        print("No RunTime Exception and INDB submitted successfully")
-except NoSuchElementException:
-    print(' ')
+                    New_NULL_INDB_REV_ID = driver.find_element_by_xpath(
+                        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[7]/td[2]/input").get_attribute(
+                        "value")
+                    print("New_INDB_REV_ID is:-", New_NULL_INDB_REV_ID)  # print New INDB REV ID
+
+                    Hovedindberetningsident = driver.find_element_by_xpath(
+                        "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[4]/td[2]/input").get_attribute(
+                        "value")
+                    print("Hovedindberetningsident is:", Hovedindberetningsident)
+
+                    # Copy INDB ID to Excel File
+                    time.sleep(5)
+                    workbook = openpyxl.load_workbook(file_path)  # Load Workbook
+                    sheet = workbook['REV_INDBID']
+                    print(New_NULL_INDB_REV_ID)
+                    # Copy INDB_ID in to Excel
+                    i = 1
+                    while sheet.cell(row=i, column=1).value != None:
+                        i = i + 1
+                    sheet.cell(i, 6).value = NULL_INDB_ID
+                    sheet.cell(i, 7).value = New_NULL_INDB_REV_ID
+                    sheet.cell(i, 8).value = Hovedindberetningsident
+                    workbook.save(file_path)
+                    driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+                else:
+                    print('Since TILBAGEFORT VALUE is: Ja File cannot be reversed ')
+        except NoSuchElementException:
+                print('  ')
+
+        # Click bekraft button to commit Tilbage (Reversal)
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+        try:
+            WebDriverWait(driver, 3).until(EC.alert_is_present(),
+                                       'Timed out waiting for PA creation ' +
+                                       'confirmation popup to appear.')
+
+            alert = driver.switch_to.alert
+            print(alert.text)
+            time.sleep(5)
+            alert.accept()
+            print("alert accepted")
+        except TimeoutException:
+            print("no popup alert")
+            time.sleep(5)
+
+A1 = nullindbreversal()
+A1.reversalScreenNavigation()
+
