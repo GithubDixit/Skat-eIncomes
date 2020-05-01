@@ -1,4 +1,6 @@
 # Call Login python file
+import re
+
 import driver as driver
 import Login_Add_SENR
 from Login_Add_SENR import webdriver
@@ -87,39 +89,54 @@ driver.find_element_by_xpath(
     "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr[1]/td[2]/input").send_keys(
     Valid_Till)
 
-# Select Radio Button
+#******************************** CONDITION **********************************************************
+# Select Radio Button for condition
 driver.find_element_by_xpath("//*[@id='betingelse_6001']").click()
 time.sleep(3)
 
 # Enter value of Vælg betingelse
-driver.find_element_by_css_selector(
-    "table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)").click()
-time.sleep(2)
+#Select Condition Value from Excel
 conditon = sh.cell_value(rowx=1, colx=5)
 print("condition value", conditon)
-driver.find_element_by_css_selector(
-    "table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)"). \
-    send_keys(conditon)
-time.sleep(2)
-driver.find_element_by_css_selector(
-    "table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)"). \
-    send_keys(conditon)
+driver.find_element_by_xpath(conditon).click()
+
+#Select Operator from Excel
+Operator = sh.cell_value(rowx=1, colx=6)
+print("Operator value", Operator)
+driver.find_element_by_xpath(Operator).click()
+#driver.find_element_by_css_selector("table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)"). \    send_keys(conditon)
 time.sleep(2)
 
-# Enter value of Operators
-driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[4]/tbody/tr[3]/td[3]/select").send_keys(
-    (sh.cell_value(rowx=1, colx=6)))
+# Enter value of Condition
+Condition_Value = int(sh.cell_value(rowx=1, colx=7))
+print("Operator value", Condition_Value)
+driver.find_element_by_name("betingelse_veardi").send_keys(Condition_Value)
+time.sleep(3)
+driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[4]/tbody/tr[5]/td/input[2]").click()
 time.sleep(3)
 
-# Enter value of Værdi
-driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[4]/tbody/tr[4]/td[2]/textarea").send_keys(
-    sh.cell_value(rowx=1, colx=7))
+#******************************** RULE **********************************************************
+# Select Radio Button for Rule(Vælg regel)
+driver.find_element_by_id("regel_6001").click()
 
-driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[4]/tbody/tr[5]/td[2]/input[2]").click()
-# Enter value in
-# Enter value in
+# Enter value of Vælg regel
+# #Select Rule Value from Excel
+Rule= sh.cell_value(rowx=1, colx=8)
+print("Rule value", Rule)
+driver.find_element_by_xpath(Rule).click()
 
+#Select Operator from Excel
+#Select Operator from Excel
+Operator = sh.cell_value(rowx=1, colx=6)
+print("Operator value", Operator)
+driver.find_element_by_xpath(Operator).click()
+#driver.find_element_by_css_selector("table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)"). \    send_keys(conditon)
+time.sleep(2)
+
+# Enter value of Rule
+Rule_Value = int(sh.cell_value(rowx=1, colx=9))
+print("Operator value", Rule_Value)
+driver.find_element_by_name("regel_veardi").send_keys(Rule_Value)
+time.sleep(3)
+driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[6]/tbody/tr[5]/td/input[2]").click()
 time.sleep(3)
