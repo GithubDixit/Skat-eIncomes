@@ -23,86 +23,49 @@ import time
 import xlrd  # import package to read data from Excel
 import openpyxl
 from openpyxl import load_workbook
-
 global switcher
-
-
+from xpath_repository import *
 class PythonSwitch:
     # ************************************SWITCH CASE********************************
     def switch(self, value):
         default = "Incorrect value"
         return getattr(self, 'case_' + str(value), lambda: default)()
-
     def case_13(self): return '//option[@value="6001.13"] '
-
     def case_14(self): return '//option[@value="6001.14"] '
-
     def case_15(self): return '//option[@value="6001.15"] '
-
     def case_16(self): return '//option[@value="6001.16"] '
-
     def case_17(self): return '//option[@value="6001.17"] '
-
     def case_19(self): return '//option[@value="6001.19"] '
-
     def case_20(self): return '//option[@value="6001.20"] '
-
     def case_21(self): return '//option[@value="6001.21"] '
-
     def case_22(self): return '//option[@value="6001.22"] '
-
     def case_23(self): return '//option[@value="6001.23"] '
-
     def case_36(self): return '//option[@value="6001.36"] '
-
     def case_38(self): return '//option[@value="6001.38"] '
-
     def case_39(self): return '//option[@value="6001.39"] '
-
     def case_46(self): return '//option[@value="6001.46"] '
-
     def case_48(self): return '//option[@value="6001.48"] '
-
     def case_50(self): return '//option[@value="6001.50"] '
-
     def case_51(self): return '//option[@value="6001.51"] '
-
     def case_52(self): return '//option[@value="6001.52"] '
-
     def case_53(self): return '//option[@value="6001.53"] '
-
     def case_64(self): return '//option[@value="6001.64"] '
-
     def case_65(self): return '//option[@value="6001.65"] '
-
     def case_66(self): return '//option[@value="6001.66"] '
-
     def case_69(self): return '//option[@value="6001.69"] '
-
     def case_70(self): return '//option[@value="6001.70"] '
-
     def case_71(self): return '//option[@value="6001.71"] '
-
     def case_88(self): return '//option[@value="6001.88"] '
-
     def case_98(self): return '//option[@value="6001.98"] '
-
     def case_147(self): return '//option[@value="6001.147"]'
-
     def case_148(self): return '//option[@value="6001.148"]'
-
     def case_200(self): return '//option[@value="6001.200"]'
-
     def case_201(self): return '//option[@value="6001.201"]'
-
     def case_202(self): return '//option[@value="6001.202"]'
-
     def case_249(self): return '//option[@value="6001.249"]'
-
 
 # *********************************************************************************************************************
 class dynamicruleclass:
-
     # ************ Method to Handle Current Window **************#
     def handle_current_window_method(self):
         handles = driver.window_handles
@@ -112,23 +75,24 @@ class dynamicruleclass:
             driver.maximize_window()
 
     def dynamicscreennavigation(self):
-        time.sleep(4)
-        # click on Systemadministration link
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td/a[24]").click()
-        dynamicruleclass.handle_current_window_method(self)
         time.sleep(5)
-        # Click on Dynamiske valideringsregler link
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/a[13]").click()
+        print(System_admin_link)
+        driver.find_element_by_xpath(System_admin_link).click()  # click on Systemadministration link
+        time.sleep(2)
         dynamicruleclass.handle_current_window_method(self)
+
+        print(Dynamiske_valideringsregler_link)
+        driver.find_element_by_xpath(Dynamiske_valideringsregler_link).click()  # Click Dynamiske_valideringsregler_link
+        time.sleep(2)
+        dynamicruleclass.handle_current_window_method(self)
+
         time.sleep(3)
         dynamicruleclass.createdynamicrule(self)
 
     def createdynamicrule(self):
+        time.sleep(3)
         # Click New Rule Button
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr/td/input").click()
+        driver.find_element_by_xpath(new_button).click()
         time.sleep(5)
 
         # Pass entire file path as parameter
@@ -140,40 +104,30 @@ class dynamicruleclass:
         # Enter value in Fejlnr Field
         Fejlnr = sh.cell_value(rowx=1, colx=0)
         print("Fejlnr:-", Fejlnr)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[1]/td[2]/input").send_keys(
-            Fejlnr)
+        driver.find_element_by_xpath(Fejlnr_textbox).send_keys(Fejlnr)
 
         # Enter value in Fejltekst Field
         Fejltekst = sh.cell_value(rowx=1, colx=1)
         print("Fejltekst:-", Fejltekst)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[1]/td[4]/textarea").send_keys(
-            Fejltekst)
+        driver.find_element_by_xpath(Fejl_text).send_keys(Fejltekst)
 
         # Enter value in Fejlbeskrivelse Field
         Fejlbeskrivelse = sh.cell_value(rowx=1, colx=2)
         print("Fejlbeskrivelse :-", Fejlbeskrivelse)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[1]/tbody/tr[2]/td[4]/textarea").send_keys(
-            Fejlbeskrivelse)
+        driver.find_element_by_xpath(Fejl_value).send_keys(Fejlbeskrivelse)
 
         # Enter value in Gældende fra Field
         Valid_from = sh.cell_value(rowx=1, colx=3)
         print("Valid_from :-", Valid_from)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr[1]/td[1]/input").send_keys(
-            Valid_from)
+        driver.find_element_by_xpath(date_valid_from).send_keys( Valid_from)
 
         # Enter value in Gældende til Field
         Valid_Till = sh.cell_value(rowx=1, colx=4)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[2]/tbody/tr[1]/td[2]/input").send_keys(
-            Valid_Till)
+        driver.find_element_by_xpath(date_valid_till).send_keys( Valid_Till)
 
-        # ******************************** CONDITION **********************************************************
+        # ******************************** SET CONDITION **********************************************************
         # Select Radio Button for condition
-        driver.find_element_by_xpath("//*[@id='betingelse_6001']").click()
+        driver.find_element_by_xpath(condition_field_6001_radiobutton).click()
         time.sleep(3)
 
         # Enter value of Vælg betingelse
@@ -189,7 +143,6 @@ class dynamicruleclass:
         Operator = sh.cell_value(rowx=1, colx=6)
         print("Operator value", Operator)
         driver.find_element_by_xpath(Operator).click()
-        # driver.find_element_by_css_selector("table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)"). \    send_keys(conditon)
         time.sleep(2)
 
         # Enter value of Condition
@@ -197,8 +150,7 @@ class dynamicruleclass:
         print("Operator value", Condition_Value)
         driver.find_element_by_name("betingelse_veardi").send_keys(Condition_Value)
         time.sleep(3)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[4]/tbody/tr[5]/td/input[2]").click()
+        driver.find_element_by_xpath(ok_button_savecondition).click()
         time.sleep(3)
         driver.find_element_by_id("betingelse_5000_6000").click()
         time.sleep(2)
@@ -206,7 +158,7 @@ class dynamicruleclass:
         # ******************************** RULE **********************************************************
         # Select Radio Button for Rule(Vælg regel)
         driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-        driver.find_element_by_id("regel_6001").click()
+        driver.find_element_by_id(rule_field_6001_radiobutton).click()
         time.sleep(3)
 
         # Enter value of Vælg regel
@@ -219,15 +171,12 @@ class dynamicruleclass:
         time.sleep(2)
         driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
         time.sleep(2)
-        # driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[6]/tbody/tr[3]/td[1]/select/option[1]").click()
         driver.find_element_by_name("regel_record_selected").find_element_by_xpath(a.switch(Rule)).click()
-        # driver.find_element_by_xpath("//option[@value='6001.66']").click()
 
         # Select Operator from Excel
         Operator = sh.cell_value(rowx=1, colx=6)
         print("Operator value", Operator)
         driver.find_element_by_xpath(Operator).click()
-        # driver.find_element_by_css_selector("table.clContentTable:nth-child(4) > tbody:nth-child(1) > tr:nth-child(3) > td:nth-child(2) > select:nth-child(1)"). \    send_keys(conditon)
         time.sleep(2)
 
         # Enter value of Rule
@@ -235,8 +184,7 @@ class dynamicruleclass:
         print("Operator value", Rule_Value)
         driver.find_element_by_name("regel_veardi").send_keys(Rule_Value)
         time.sleep(3)
-        driver.find_element_by_xpath(
-            "/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td/table[6]/tbody/tr[5]/td/input[2]").click()
+        driver.find_element_by_xpath(ok_button_saverule).click()
         time.sleep(3)
 
 

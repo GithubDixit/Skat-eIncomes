@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="driver.switch_to.frame" />
+          <option value="driver.switch_to.window" />
         </list>
       </option>
     </inspection_tool>

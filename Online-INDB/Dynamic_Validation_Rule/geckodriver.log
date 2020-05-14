@@ -1312,3 +1312,233 @@ JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't fin
 
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
+1589391733080	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.BVSbwposqobi"
+1589391733592	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589391734160	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589391734160	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589391734160	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589391734161	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589391738363	Marionette	INFO	Listening on port 55424
+1589391738431	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589391928108	Marionette	INFO	Stopped listening on port 55424
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589392001254	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.82qMdKbLfpoK"
+1589392001668	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589392002111	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589392002111	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589392002111	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589392002111	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+[Parent 6532, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+1589392006149	Marionette	INFO	Listening on port 55600
+1589392006572	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589392228049	Marionette	INFO	Stopped listening on port 55600
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589392236262	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.392C6srOL8z2"
+1589392236691	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589392237148	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589392237148	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589392237148	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589392237148	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589392240569	Marionette	INFO	Listening on port 55751
+1589392240661	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589392412267	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.bqUKafsaGJcF"
+1589392412711	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589392413213	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589392413213	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589392413213	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589392413213	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589392416712	Marionette	INFO	Listening on port 55855
+1589392417051	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589392639535	Marionette	INFO	Stopped listening on port 55855
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589392745157	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.47wlQbxl23yE"
+1589392745580	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589392746040	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589392746040	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589392746041	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589392746041	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589392749658	Marionette	INFO	Listening on port 56000
+1589392750006	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript error: resource://gre/modules/UpdateTimerManager.jsm, line 352: TypeError: setting getter-only property "gLogEnabled"
+JavaScript error: resource://gre/modules/ModulesPing.jsm, line 70: NS_ERROR_XPC_JAVASCRIPT_ERROR_WITH_DETAILS: [JavaScript Error: "setting getter-only property "gLogEnabled"" {file: "resource://gre/modules/UpdateTimerManager.jsm" line: 352}]'[JavaScript Error: "setting getter-only property "gLogEnabled"" {file: "resource://gre/modules/UpdateTimerManager.jsm" line: 352}]' when calling method: [nsIUpdateTimerManager::registerTimer]
+1589392807251	Marionette	INFO	Stopped listening on port 56000
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589392815507	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.noZbp8kDwDlV"
+1589392815930	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589392816459	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589392816459	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589392816459	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589392816459	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589392820038	Marionette	INFO	Listening on port 56098
+1589392820311	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589392968072	Marionette	INFO	Stopped listening on port 56098
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589392980887	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.e4IeH0WzCr77"
+1589392981462	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589392981981	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589392981982	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589392981982	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589392981982	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589392985534	Marionette	INFO	Listening on port 56214
+1589392985660	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589393094694	Marionette	INFO	Stopped listening on port 56214
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589393680559	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.Kscf6dbRC4Du"
+1589393680997	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589393681527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589393681527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589393681527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589393681527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589393685043	Marionette	INFO	Listening on port 56649
+1589393685382	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589393812331	Marionette	INFO	Stopped listening on port 56649
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589393833930	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.G9oBtzulrwrw"
+1589393834382	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589393834810	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589393834810	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589393834810	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589393834810	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589393838305	Marionette	INFO	Listening on port 56759
+1589393838704	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589394590965	Marionette	INFO	Stopped listening on port 56759
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589427880251	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.T3HFyAWCKSst"
+1589427880912	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589427881377	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589427881377	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589427881378	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589427881378	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589427885126	Marionette	INFO	Listening on port 60685
+1589427885555	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589428078031	Marionette	INFO	Stopped listening on port 60685
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1589428839182	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ABHINA~1\\AppData\\Local\\Temp\\rust_mozprofile.oiSheRU6nsA2"
+1589428839878	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1589428840295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1589428840295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1589428840295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1589428840295	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1589428843789	Marionette	INFO	Listening on port 60882
+1589428843993	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/login/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+JavaScript warning: http://10.9.182.15/systemopsaetning/common/js/jquery-1.3.2.min.js, line 19: unreachable code after return statement
+1589428963888	Marionette	INFO	Stopped listening on port 60882
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

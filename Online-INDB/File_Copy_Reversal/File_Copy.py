@@ -24,7 +24,6 @@ import xlrd  # import package to read data from Excel
 import openpyxl
 from openpyxl import load_workbook
 #import testfile
-from genericmethods import indbmethods
 #********************* If want to create INDB and than perform Copy uncomment below code *******************************
 #from testfile import indbcreation
 global list_ad
