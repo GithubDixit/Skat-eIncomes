@@ -15,34 +15,50 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 import time
-
-time.sleep(5)
-driver.find_element_by_css_selector("a.stdhvid:nth-child(10)").click()
-
-# Move to popup window to add username and password
-print(driver.current_window_handle)  # 18 <-- Parent
-handles = driver.window_handles
-
-for handle in handles:
-    driver.switch_to.window(handle)
-    print(driver.title)
-driver.maximize_window()
-
-time.sleep(12)
-driver.find_element_by_xpath("//*[@id='defaultButton']").click()
-
-NullINDB_ID = driver.find_element_by_xpath(
-    "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[1]/td[2]").text
-
-# Copy INDB_ID in to Excel
-
 import openpyxl
+global NullINDB_ID
 
-path = (r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")
-workbook = openpyxl.load_workbook(path)  # Load Workbook
-NullINDB_Sheet = workbook['NullINDB']  # Load active sheet and save in sheet object
-NullINDB_Sheet.cell(2, 1).value = NullINDB_ID
-workbook.save(path)
+class nullindb():
 
-driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[1]/input").click()  # Save NullINDB
-driver.find_element_by_xpath("/html/body/table[3]/tbody/tr/td[2]/input").click()  # Close window
+    def handle_current_window_method(self):
+        handles = driver.window_handles
+        for handle in handles:
+            driver.switch_to.window(handle)
+        # print(driver.title)
+            driver.maximize_window()
+
+    def nullindbmethod(self):
+        time.sleep(3)
+        driver.find_element_by_css_selector("a.stdhvid:nth-child(10)").click()
+        nullindb.handle_current_window_method(self)
+        time.sleep(3)
+        Title = driver.title
+        print("Title of new page is", Title)
+        time.sleep(6)
+        driver.find_element_by_name("generelIndberetning.indberetningsident").click()
+        driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/select")
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/select").send_keys("Bagud")
+        time.sleep(3)
+        driver.find_element_by_xpath("//*[@id='defaultButton']").click()
+
+        NullINDB_ID = driver.find_element_by_xpath(
+            "/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table[2]/tbody/tr[1]/td[2]").text
+        nullindb.copyexcelmethod(self,NullINDB_ID)
+
+    def copyexcelmethod(self,NullINDB_ID):
+        # Copy INDB_ID in to Excel
+        path = (r"C:\Users\AbhinavDixit\PycharmProjects\Skat-eIncomes\Online-INDB\1-Submit_Online-INDB\Online_INDB_Excel.xlsx")
+        workbook = openpyxl.load_workbook(path)  # Load Workbook
+        NullINDB_Sheet = workbook['NullINDB']  # Load active sheet and save in sheet object
+    # Copy INDB_ID in to Excel
+        i = 1
+        while NullINDB_Sheet.cell(row=i, column=1).value != None:
+            i = i + 1
+        NullINDB_Sheet.cell(i, 1).value = NullINDB_ID
+        workbook.save(path)
+        driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[2]/td/table/tbody/tr/td[1]/input").click()  # Save NullINDB
+            #driver.find_element_by_xpath("/html/body/table[3]/tbody/tr/td[2]/input").click()  # Close window
+
+A1 = nullindb()
+A1.nullindbmethod()
