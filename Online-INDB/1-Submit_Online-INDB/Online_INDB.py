@@ -18,9 +18,44 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC, wait
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import *
-from Login_Add_SENR import USER_INP_SENR
-
 from xpath_repository import *
+
+class PersonstamoplysningerClass:
+    self = None
+
+    def __init__(self):
+        pass
+
+    def PersonstamoplysningerPageValidation(self):
+        Title = driver.title
+        print("Title of new page is", Title)
+        if Title == "SKAT, eIndkomst, Personstamoplysninger":
+            if driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).is_displayed():
+                driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).send_keys(20200401)
+                driver.find_element_by_name(Personstamoplysninger_fratraedelsesDato).send_keys(20200401)
+                driver.find_element_by_name(Personstamoplysninger_skattekortTypeAnvendFra).send_keys(20200401)
+                driver.find_element_by_name(Personstamoplysninger_supplerendeMedarbejderNr).send_keys(20200401)
+                driver.find_element_by_xpath(default_okButton).click()
+            else:
+                driver.find_element_by_xpath(default_okButton).click()
+                indbcreation.cpruploadwithpincode(self)
+        else:
+            indbcreation.cpruploadwithpincode(self)
+
+    def Personstamoplysninger_dyrule(self):
+        time.sleep(3)
+        if driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).is_displayed():
+            driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).send_keys(20200401)
+            driver.find_element_by_name(Personstamoplysninger_fratraedelsesDato).send_keys(20200401)
+            driver.find_element_by_name(Personstamoplysninger_skattekortTypeAnvendFra).send_keys(20200401)
+            driver.find_element_by_name(Personstamoplysninger_supplerendeMedarbejderNr).send_keys(20200401)
+            driver.find_element_by_xpath(default_okButton).click()
+        else:
+            driver.find_element_by_xpath(default_okButton).click()
+
+        time.sleep(3)
+
+
 class indbcreation:
     def __init__(self):
         pass
@@ -35,17 +70,25 @@ class indbcreation:
 
     # ************ Method to Create Online INDB **************#
     def checkforlawtype(self):
-        time.sleep(10)
+        A1.handle_current_window_method()
+        time.sleep(5)
+        print(scr250_checkbox)
         if driver.find_element_by_name(scr250_checkbox).is_displayed():
             print("check box visible")
             indbcreation.entercpr(self)
+            PersonstamoplysningerClass.PersonstamoplysningerPageValidation(PersonstamoplysningerClass.self)
+            indbcreation.cpruploadwithpincode(self)
         elif driver.find_element_by_xpath(scr250_eIncomeRadioButton).is_displayed():
             print("E radio button")
             driver.find_element_by_xpath(scr250_eIncomeRadioButton).click()
             indbcreation.entercpr(self)
+            PersonstamoplysningerClass.PersonstamoplysningerPageValidation(PersonstamoplysningerClass.self)
+            indbcreation.cpruploadwithpincode(self)
         else:
             print("Nothing")
             indbcreation.entercpr(self)
+            PersonstamoplysningerClass.PersonstamoplysningerPageValidation(PersonstamoplysningerClass.self)
+            indbcreation.cpruploadwithpincode(self)
 
     def entercpr(self):
         time.sleep(2)
@@ -55,25 +98,30 @@ class indbcreation:
         # driver.find_element_by_xpath("/html/body/table[2]/tbody/tr[1]/td/table/tbody/tr/td/table/tbody/tr/td[1]/div/table/tbody/tr[8]/td[2]/input").send_keys("1909580060") #Provide CPR-no
         driver.find_element_by_xpath(default_okButton).click()
         time.sleep(3)
-        Title = driver.title
-        print("Title of new page is", Title)
-        if Title == "SKAT, eIndkomst, Personstamoplysninger":
-            indbcreation.Personstamoplysninger(self)
-        else:
-            indbcreation.cpruploadwithpincode(self)
 
-    def Personstamoplysninger(self):
-        time.sleep(2)
-        if(driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato)).is_displayed():
-            driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).send_keys(20200401)
-            driver.find_element_by_name(Personstamoplysninger_fratraedelsesDato).send_keys(20200401)
-            driver.find_element_by_name(Personstamoplysninger_skattekortTypeAnvendFra).send_keys(20200401)
-            driver.find_element_by_name(Personstamoplysninger_supplerendeMedarbejderNr).send_keys(20200401)
-        else:
-            driver.find_element_by_xpath(default_okButton).click()
-            indbcreation.cpruploadwithpincode(self)
+  # def Personstamoplysningerpagevalidation(self):
+  #      Title = driver.title
+  #      print("Title of new page is", Title)
+  #      if Title == "SKAT, eIndkomst, Personstamoplysninger":
+  #          indbcreation.Personstamoplysninger(self)
+  #          indbcreation.cpruploadwithpincode(self)
+  #      else:
+  #          indbcreation.cpruploadwithpincode(self)
 
-        time.sleep(3)
+   # def Personstamoplysninger(self):
+   #     time.sleep(3)
+   #     if driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).is_displayed():
+   #         driver.find_element_by_name(Personstamoplysninger_ansaettelsesDato).send_keys(20200401)
+   #         driver.find_element_by_name(Personstamoplysninger_fratraedelsesDato).send_keys(20200401)
+   #         driver.find_element_by_name(Personstamoplysninger_skattekortTypeAnvendFra).send_keys(20200401)
+   #         driver.find_element_by_name(Personstamoplysninger_supplerendeMedarbejderNr).send_keys(20200401)
+   #         driver.find_element_by_xpath(default_okButton).click()
+    #    else:
+     #       driver.find_element_by_xpath(default_okButton).click()
+
+
+
+      #  time.sleep(3)
 
     def cpruploadwithpincode(self):
         time.sleep(2)
@@ -126,8 +174,11 @@ class indbcreation:
             driver.find_element_by_xpath(scr255_dyrule_pincodepopup).is_displayed()
             print("Dynamic Rule displayed")
             indbcreation.pincodedyvalidation(self)
+            indbcreation.cpruploadwithoutpincode(self)
         except NoSuchElementException:
             print("No Dynamic Rule displayed")
+            driver.find_element_by_xpath(okButton).click()
+            time.sleep(2)
             indbcreation.copy_data_excel_method(self)
 
     def pincodedyvalidation(self):
@@ -174,6 +225,11 @@ class indbcreation:
             indbcreation.handle_current_window_method(self)
             driver.find_element_by_xpath(Indberet_lønoplysninger_link).click()
             indbcreation.handle_current_window_method(self)
+            time.sleep(3)
+            indbcreation.entercpr(self)
+            time.sleep(3)
+            PersonstamoplysningerClass.Personstamoplysninger_dyrule(PersonstamoplysningerClass.self)
+            #indbcreation.Personstamoplysningerpagevalidation(self)
             time.sleep(3)
             indbcreation.cpruploadwithoutpincode(self)
             # Enter Pincode and click ok
@@ -234,9 +290,12 @@ class indbcreation:
 
     # Click to create Online INDB
 
-time.sleep(15)
+time.sleep(10)
 driver.find_element_by_xpath(Indberet_lønoplysninger_link).click()
 time.sleep(10)
 A1 = indbcreation()
-A1.handle_current_window_method()
+#A1.handle_current_window_method()
 A1.checkforlawtype()
+A2 = PersonstamoplysningerClass()
+
+
